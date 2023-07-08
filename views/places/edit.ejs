@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Edit Place</h1>
+        <div class="col-6 offset-3">
+            <form action="/places/<%=place._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="place[title]" value="<%=place.title%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="known_for">Known for </label>
+                    <input class="form-control" type="text" id="known_for" name="place[known_for]" value="<%=place.known_for%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input class="form-control" type="text" id="image" name="place[image]" value="<%=place.image%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="place[description]" required><%=place.description%></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="season">Best Season</label>
+                    <input class="form-control" type="text" id="season" name="place[season]" value="<%=place.season%>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Place</button>
+                </div>
+            </form>
+            <a href="/places/<%=place._id%>">Back to Place</a>
+        </div>
+    </div>
