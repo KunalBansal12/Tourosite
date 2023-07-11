@@ -8,6 +8,10 @@ const PlaceSchema = new Schema({
     known_for: String,
     description: String,
     season: String,
+    author:{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews: [
         {
             type:Schema.Types.ObjectId,

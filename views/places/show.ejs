@@ -1,4 +1,6 @@
 <% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
     <div class="row">
         <div class="col-6">
             <div class="card mb-3">
@@ -11,15 +13,18 @@
                   <li class="list-group-item text-muted"><%=place.known_for%></li>
                   <li class="list-group-item"><%=place.season%></li>
                 </ul>
+                <% if(currentUser && place.author.equals(currentUser._id)){ %>
                 <div class="card-body">
                     <a class="card-link btn btn-info" href="/places/<%=place._id%>/edit">Edit</a>
                     <form class="d-inline" action="/places/<%=place._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
                     </form>
                 </div>
+                <% } %>
               </div>
         </div>
         <div class="col-6">
+          <% if(currentUser){ %>
           <h2>Leave a review</h2>
               <form action="/places/<%=place._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
                 <div class="mb-3">
@@ -32,14 +37,18 @@
                 </div>
                 <button class="btn btn-success">Submit</button>
               </form>
+              <% } %>
               <%for(let review of place.reviews) {%>
                 <div class="card mb-3">
                 <div class="card-body">
                   <h5 class="card-title">Rating: <%=review.rating%></h5>
+                  <h6 class="card-subtitle mb-2 text-muted">By <%=review.author.username%></h6>
                   <p class="card-text">Review: <%=review.body%></p>
+                  <% if(currentUser && review.author.equals(currentUser._id)){ %>
                   <form action="/places/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                   <button class="btn btn-sm btn-danger">Delete</button>
-                </form>
+                  </form>
+                  <%}%>
               </div>
             </div>
                 <%}%>

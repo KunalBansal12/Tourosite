@@ -15,6 +15,7 @@ const seedDB = async () => {
     await Place.deleteMany({});
     for (let i = 0; i < 40; i++) {
         const plac = new Place({
+            author: "64ac5ddd3e6fd514fd3f49d2",
             title: `${attractions[i].name}`,
             known_for: `${attractions[i].known_for}`,
             description: `${attractions[i].description}`,
